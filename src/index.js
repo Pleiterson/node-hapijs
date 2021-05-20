@@ -9,7 +9,7 @@ const server = Hapi.server({
     port,
     routes: {
         json: {
-            space: 4
+            space: 2
         }
     }
 })
