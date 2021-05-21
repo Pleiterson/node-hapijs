@@ -1,12 +1,12 @@
 import Boom from 'boom'
 
-class UsersController {
-  constructor(Users) {
-    this.Users = Users;
+class PostsController {
+  constructor(Posts) {
+    this.Posts = Posts;
   }
 
   async find(request) {
-    const { id } = request.params
+    const {id} = request.params
     const query = {}
 
     if (id) {
@@ -14,18 +14,18 @@ class UsersController {
     }
 
     try {
-      const users = await this.Users.find(query)
-      return { users }
+      const posts = await this.Posts.find(query)
+      return {posts}
         
     } catch (error) {
-      return Boom.badRequest('Failed to find user')
+      return Boom.badRequest('Failed to find posts')
     }
   }
 
   async create(request, h, err) {
     try {
-      const user = new this.Users(request.payload)
-      await user.save()
+      const posts = new this.Posts(request.payload)
+      await posts.save()
 
       return h.response().code(201)
     } catch (error) {
@@ -34,18 +34,18 @@ class UsersController {
   }
 
   async update(request, h) {
-    const { id } = request.params
+    const {id} = request.params
 
     try {
-      const updatedUser = await this.Users.findOneAndUpdate({ _id: id }, request.payload, {
+      const updatedPosts = await this.Posts.findOneAndUpdate({_id: id}, request.payload, {
         new: true,
       });
 
-      if (updatedUser) {
+      if (updatedPosts) {
         return h.response().code(200)
       }
 
-      return Boom.badRequest('Could not update the user')
+      return Boom.badRequest('Could not update the posts')
     } catch (error) {
       return Boom.badRequest(error)
     }
@@ -55,9 +55,9 @@ class UsersController {
     const {id} = request.params
     
     try {
-      const deleteUser = await this.Users.deleteOne({_id: id})
+      const deletePost = await this.Posts.deleteOne({_id: id})
 
-      if (deleteUser) {
+      if (deletePost) {
         return h.response().code(200)
       }
     } catch (error) {
@@ -66,4 +66,4 @@ class UsersController {
   }
 }
 
-export default UsersController
+export default PostsController
