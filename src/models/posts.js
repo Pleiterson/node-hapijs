@@ -1,4 +1,4 @@
-import Mongoose from 'mongoose'
+import Mongoose from 'mongoose';
 
 const schema = new Mongoose.Schema({
   title: String,
@@ -9,7 +9,7 @@ const schema = new Mongoose.Schema({
     default: Date.now
   },
 }, {
-  timestamps: { createdAt: true, updatedAt: true },
+  timestamps: {createdAt: true, updatedAt: true},
   toJSON: { 
     virtuals: true,
     transform(doc, ret) {
@@ -18,8 +18,8 @@ const schema = new Mongoose.Schema({
     }
   },
   versionKey: false,
-})
+});
 
-const PostsModel = Mongoose.model('Posts', schema)
+const PostsModel = Mongoose.model('Posts', schema);
 
-export default PostsModel
+export default PostsModel;

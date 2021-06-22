@@ -1,14 +1,14 @@
-import Joi from 'joi'
-import PostsController from '../controllers/posts'
-import PostsModel from '../models/posts'
+import Joi from 'joi';
+import PostsController from '../controllers/posts';
+import PostsModel from '../models/posts';
 
-const postsController = new PostsController(PostsModel)
+const postsController = new PostsController(PostsModel);
 const postsRoute = (server) => {
   server.route({
     method: 'GET',
     path: '/posts/{id?}',
     handler: (request, h) => postsController.find(request, h)
-  })
+  });
 
   server.route({
     method: 'POST',
@@ -23,7 +23,7 @@ const postsRoute = (server) => {
         }
       }
     }
-  })
+  });
 
   server.route({
     method: 'PUT',
@@ -38,13 +38,13 @@ const postsRoute = (server) => {
         }
       }
     }
-  })
+  });
 
   server.route({
     method: 'DELETE',
     path: '/posts/{id}',
     handler: (request, h) => postsController.delete(request, h)
-  })
-}
+  });
+};
 
-module.exports = postsRoute
+module.exports = postsRoute;

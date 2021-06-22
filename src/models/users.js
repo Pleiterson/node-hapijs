@@ -1,6 +1,6 @@
-import Mongoose from 'mongoose'
+import Mongoose from 'mongoose';
 
-const validateEmail = (email) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+const validateEmail = (email) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 const schema = new Mongoose.Schema({
   firstName: String,
   lastName: String,
@@ -12,7 +12,7 @@ const schema = new Mongoose.Schema({
     // validate: [validateEmail, 'Please fill a valid email address'],
   },
 }, {
-  timestamps: { createdAt: true, updatedAt: true },
+  timestamps: {createdAt: true, updatedAt: true},
   toJSON: { 
     virtuals: true,
     transform(doc, ret) {
@@ -21,8 +21,8 @@ const schema = new Mongoose.Schema({
     }
   },
   versionKey: false,
-})
+});
 
-const UsersModel = Mongoose.model('Users', schema)
+const UsersModel = Mongoose.model('Users', schema);
 
-export default UsersModel
+export default UsersModel;
